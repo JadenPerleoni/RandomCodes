@@ -1,0 +1,7 @@
+userNumber = input("Please enter a number")
+userNumber = int(userNumber)
+print(f'The number you entered was {userNumber}')
+multipliedNumber = input(f'What do you want to multiply {userNumber} by?')
+multipliedNumber = int(multipliedNumber)
+result = (multipliedNumber)* (userNumber)
+print(f'The result is {result}')
