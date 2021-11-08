@@ -1,0 +1,491 @@
+
+// Jaden Perleoni
+// 08/5/2021
+// Mini Project 7
+
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+
+using namespace std;
+int calculateFunction();
+void choiceFunction();
+
+const double SALES_TAX = 0.0775;
+const double SMALL_PACKAGE = 1.5;
+const double MEDIUM_PACKAGE = 2.5;
+const double LARGE_PACKAGE = 3;
+
+double volumeCost, premiumDelivery;
+
+
+int main()
+{
+    double subTotal;
+    double change;
+    double salesTaxTotal,
+    totalCost;
+    int paymentChoice;
+    double cashGiven;
+    string licenseNumber;
+    char cardChoice;
+    int lastDigits;
+    string date;
+    string customerName;
+
+
+    cout << "****East County Cargo Transport****" << endl << endl << "Cashiering system 2.0" << endl;
+    cout << "Starting Transactions - date - ";
+    std::getline(std::cin, date);
+
+    cout << endl;
+    cout << "Starting at Transaction #1 \n";
+    cout << endl;
+
+
+    std::cout << "Enter Customer's name: ";
+    std::getline(std::cin, customerName);
+      cout << endl;
+
+
+    cout << "Customer - " << customerName << endl;
+    cout << endl;
+
+
+
+    subTotal = calculateFunction();
+
+
+    cout << fixed << setprecision(2);
+    
+    
+    subTotal += premiumDelivery;
+    cout << setw(40) << left << "Subtotal " << "$" << setw(20) << left << subTotal << endl;
+
+    salesTaxTotal = subTotal * SALES_TAX;
+    totalCost = salesTaxTotal + subTotal;
+    cout << setw(40) << left << "Sales Tax - 7.75'%' " << "$" << setw(20) << left << salesTaxTotal << endl << endl;
+    cout << setw(40) << left << "Total" << "$" << setw(20) << left << totalCost << endl << endl;
+
+    cout << "Payment (1. Cash, 2. Check, 3. Credit): ";
+    cin >> paymentChoice;
+
+    if (paymentChoice == 1) {
+        cout << endl << fixed << setprecision(2);
+        cout << setw(40) << left << "Accepted " << "$";
+
+        cin >> cashGiven;
+        if (cashGiven > totalCost) {
+            change = cashGiven - totalCost;
+        }
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Change: " << "$" << setw(20) << left << change << endl;
+
+    }
+    else if (paymentChoice == 2) {
+        cout << setw(40) << left << "Enter Driver License No: ";
+        cin >> licenseNumber;
+
+        if (licenseNumber.length() > 8) {
+            cout << "Driver's license is not valid";
+        }
+        cout << setw(40) << left << "Accepted Check Payment: " << "$" << setw(20) << left << totalCost << endl;
+    }
+    else if (paymentChoice == 3) {
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Visa (V) or Mastercard (M): ";
+        cin >> cardChoice;
+        cout << setw(40) << left << "Enter Last Four Digits of Card: ";
+        cin >> lastDigits;
+        cout << endl;
+        cout << setw(40) << left << "Accepted Credit Card Payment: " << "$" << setw(20) << left << totalCost << endl;
+
+    }
+    return 0;
+
+}
+
+
+int calculateFunction()
+{
+
+    int length, width, height, volume, shippingChoice;
+
+    string size;
+
+    double rate;
+
+    static int subTotal, packageNumber = 1;
+    cout << "Enter dimensions for container #" << packageNumber << "(in feet):" << endl;
+    
+    cout << "Height: ";
+    cin >> height;
+    cout << endl;
+    
+    cout << "Length: ";
+    cin >> length;
+    cout << endl;
+
+    cout << "Width: ";
+    cin >> width;
+    cout << endl;
+
+   
+    volume = length * width * height;
+
+    cout << "Volume of container #" << packageNumber << " is " << volume << " cu feet" << endl << endl;
+    packageNumber = packageNumber + 1;
+
+    if (volume < 15)
+    {
+        rate = SMALL_PACKAGE;
+        size = "Small Package";
+    }
+    else if (volume >= 15 && volume <= 45)
+    {
+        rate = MEDIUM_PACKAGE;
+        size = "Medium Package";
+    }
+    else if (volume > 45 && volume <= 65)
+    {
+        rate = LARGE_PACKAGE;
+        size = "Large Package";
+    }
+    else
+    {
+        cout << "Your package is too large. Please re enter the dimensions" <<
+            endl;
+        return 0;
+    }
+    cout << size << "($ " << rate << " per cu foot)" << "$" << rate *
+        volume << endl;
+
+    cout << "How is this container to be shipped: \n" << endl <<
+        "(1) Standard - (one to two weeks) - No change to the price\n"
+        "(2) Fast Ground - (3 to 5 business days) - Extra $1.50 per cubic foot\n"
+        "(3) Air - (1 to 2 business days) - Only applies to packages under 30 cubic feet - Extra $3.00 per cubic foot\n" << endl;
+
+    cout << "Delivery: ";
+    cin >> shippingChoice;
+    cout << endl;
+    if (shippingChoice == 1) {
+        volumeCost = 0;
+        cout << "Standard: $0.00 \n";
+    }
+    else if (shippingChoice == 2) {
+        volumeCost = volume * 1.5;
+        cout << "Fast Ground ($1.50 per cu ft): $" << volumeCost << endl;
+    }
+    else if (shippingChoice == 3) {
+        volumeCost = volume * 3.00;
+        cout << "Air ($3.00 per cu ft): " << volumeCost << endl;
+    }
+
+    premiumDelivery += volumeCost;
+    subTotal += rate * volume;
+
+    choiceFunction();
+    return subTotal;
+}
+
+
+void
+choiceFunction()
+{
+
+    char choice;
+
+    cout << endl << "Another container (y/n): ";
+    cin >> choice;
+    cout << endl;
+
+    if (choice != 'Y' && choice != 'N' && choice != 'y' && choice != 'n')
+    {
+        cout << "Please enter yes or no" << endl;
+        choiceFunction();
+    }
+
+    if (choice != 'N' && choice != 'n')
+    {
+
+        calculateFunction();
+
+    }
+}
+
+/*Displays
+// This is a testing environment.
+// Jaden Perleoni
+// 07/26/2021
+// Mini Project 6
+
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+
+using namespace std;
+int calculateFunction();
+void choiceFunction();
+
+const double SALES_TAX = 0.0775;
+const double SMALL_PACKAGE = 1.5;
+const double MEDIUM_PACKAGE = 2.5;
+const double LARGE_PACKAGE = 3;
+
+double volumeCost, premiumDelivery;
+
+
+int main()
+{
+    int subTotal;
+    double change;
+    double salesTaxTotal,
+    totalCost;
+    int paymentChoice;
+    double cashGiven;
+    string licenseNumber;
+    char cardChoice;
+    int lastDigits;
+    string date;
+    string customerName;
+
+
+    cout << "****East County Cargo Transport****" << endl << endl << "Cashiering system 2.0" << endl;
+    cout << "Starting Transactions - date - ";
+    std::getline(std::cin, date);
+
+    cout << endl;
+    cout << "Starting at Transaction #1 \n";
+    cout << endl;
+
+
+    std::cout << "Enter Customer's name: ";
+    std::getline(std::cin, customerName);
+      cout << endl;
+
+
+    cout << "Customer - " << customerName << endl;
+    cout << endl;
+
+
+
+    subTotal = calculateFunction();
+
+
+    cout << fixed << setprecision(2);
+    
+    
+    subTotal += premiumDelivery;
+    cout << setw(40) << left << "Subtotal " << "$" << setw(20) << left << subTotal << endl;
+
+    salesTaxTotal = subTotal * SALES_TAX;
+    totalCost = salesTaxTotal + subTotal;
+    cout << setw(40) << left << "Sales Tax - 7.75'%' " << "$" << setw(20) << left << salesTaxTotal << endl << endl;
+    cout << setw(40) << left << "Total" << "$" << setw(20) << left << totalCost << endl << endl;
+
+    cout << "Payment (1. Cash, 2. Check, 3. Credit): ";
+    cin >> paymentChoice;
+
+    if (paymentChoice == 1) {
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Accepted " << "$";
+
+        cin >> cashGiven;
+        if (cashGiven > totalCost) {
+            change = cashGiven - totalCost;
+        }
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Change: " << "$" << setw(20) << left << change << endl;
+
+    }
+    else if (paymentChoice == 2) {
+        cout << setw(40) << left << "Enter Driver License No: ";
+        cin >> licenseNumber;
+
+        if (licenseNumber.length() > 8) {
+            cout << "Driver's license is not valid";
+        }
+        cout << setw(40) << left << "Accepted Check Payment: " << "$" << setw(20) << left << totalCost << endl;
+    }
+    else if (paymentChoice == 3) {
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Visa (V) or Mastercard (M): ";
+        cin >> cardChoice;
+        cout << setw(40) << left << "Enter Last Four Digits of Card: ";
+        cin >> lastDigits;
+        cout << setw(40) << left << "Accepted Credit Card Payment: " << "$" << setw(20) << left << totalCost << endl;
+
+    }
+    return 0;
+
+}
+
+
+int calculateFunction()
+{
+
+    int length, width, height, volume, shippingChoice;
+
+    string size;
+
+    double rate;
+
+    static int subTotal, packageNumber = 1;
+    cout << "Enter dimensions for container #" << packageNumber << "(in feet):" << endl;
+    
+    cout << "Height: ";
+    cin >> height;
+    cout << endl;
+    
+    cout << "Length: ";
+    cin >> length;
+    cout << endl;
+
+    cout << "Width: ";
+    cin >> width;
+    cout << endl;
+
+   
+    volume = length * width * height;
+
+    cout << "Volume of container #" << packageNumber << " is " << volume << " cu feet" << endl << endl;
+    packageNumber = packageNumber + 1;
+
+    if (volume < 15)
+    {
+        rate = SMALL_PACKAGE;
+        size = "Small Package";
+    }
+    else if (volume >= 15 && volume <= 45)
+    {
+        rate = MEDIUM_PACKAGE;
+        size = "Medium Package";
+    }
+    else if (volume > 45 && volume <= 65)
+    {
+        rate = LARGE_PACKAGE;
+        size = "Large Package";
+    }
+    else
+    {
+        cout << "Your package is too large. Please re enter the dimensions" <<
+            endl;
+        return 0;
+    }
+    cout << size << "($ " << rate << " per cu foot)" << "$" << rate *
+        volume << endl;
+
+    cout << "How is this container to be shipped: \n" << endl <<
+        "(1) Standard - (one to two weeks) - No change to the price\n"
+        "(2) Fast Ground - (3 to 5 business days) - Extra $1.50 per cubic foot\n"
+        "(3) Air - (1 to 2 business days) - Only applies to packages under 30 cubic feet - Extra $3.00 per cubic foot\n" << endl;
+
+    cout << "Delivery: ";
+    cin >> shippingChoice;
+    cout << endl;
+    if (shippingChoice == 1) {
+        volumeCost = 0;
+        cout << "Standard: $0.00 \n";
+    }
+    else if (shippingChoice == 2) {
+        volumeCost = volume * 1.5;
+        cout << "Fast Ground ($1.50 per cu ft): $" << volumeCost << endl;
+    }
+    else if (shippingChoice == 3) {
+        volumeCost = volume * 3.00;
+        cout << "Air ($3.00 per cu ft): " << volumeCost << endl;
+    }
+
+    premiumDelivery += volumeCost;
+    subTotal += rate * volume;
+
+    choiceFunction();
+    return subTotal;
+}
+
+
+void
+choiceFunction()
+{
+
+    char choice;
+
+    cout << endl << "Another container (y/n): ";
+    cin >> choice;
+    cout << endl;
+
+    if (choice != 'Y' && choice != 'N' && choice != 'y' && choice != 'n')
+    {
+        cout << "Please enter yes or no" << endl;
+        choiceFunction();
+    }
+
+    if (choice != 'N' && choice != 'n')
+    {
+
+        calculateFunction();
+
+    }
+}
+
+/*Displays
+East County Box Company
+
+Sales Program (version 1.5)
+
+
+Enter package dimensions (feet):
+Length: 3
+Width: 4
+Height: 2
+Volume of container #1 is 24 cu feet
+Medium Package($ 2.5 per cu foot)$60
+How is this container to be shipped:
+(1) Standard - (one to two weeks) - No change to the price
+(2) Fast Ground - (3 to 5 business days) - Extra $1.50 per cubic foot
+(3) Air - (1 to 2 business days) - Only applies to packages under 30 cubic feet - Extra $3.00 per cubic foot
+Delivery: 2
+Fast Ground ($1.50 per cu ft): $36
+36Another container (Y/N): y
+Enter package dimensions (feet):
+Length: 9
+Width: 2
+Height: 3
+Volume of container #2 is 54 cu feet
+Large Package($ 3 per cu foot)$162
+How is this container to be shipped:
+(1) Standard - (one to two weeks) - No change to the price
+(2) Fast Ground - (3 to 5 business days) - Extra $1.50 per cubic foot
+(3) Air - (1 to 2 business days) - Only applies to packages under 30 cubic feet - Extra $3.00 per cubic foot
+Delivery: 1
+Standard: $0.00
+36Another container (Y/N): y
+Enter package dimensions (feet):
+Length: 1
+Width: 2
+Height: 4
+Volume of container #3 is 8 cu feet
+Small Package($ 1.5 per cu foot)$12
+How is this container to be shipped:
+(1) Standard - (one to two weeks) - No change to the price
+(2) Fast Ground - (3 to 5 business days) - Extra $1.50 per cubic foot
+(3) Air - (1 to 2 business days) - Only applies to packages under 30 cubic feet - Extra $3.00 per cubic foot
+Delivery: 3
+Air ($3.00 per cu ft): 24
+60Another container (Y/N): n
+Container Total                         $234
+Premium Delivery                        $60.00
+Subtotal                                $294
+Sales Tax - 7.75'%'                     $22.79
+
+Total                                   $316.79
+Payment (1. Cash, 2. Check, 3. Credit): 3
+Visa (V) or Mastercard (M):             v
+Enter Last Four Digits of Card:         1234
+Accepted Credit Card Payment:           $316.79
+*/
+*/

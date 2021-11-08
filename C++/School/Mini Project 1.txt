@@ -1,0 +1,52 @@
+// This is a testing environment.
+// Jaden Perleoni
+// 07/05/2021
+// Mini Project 1
+#include <iostream>
+using namespace std;
+int width,
+length,
+height,
+volume,
+shippingCost;
+
+float
+salesTax = 0.0775,
+rate = 2.5,
+totalCost,
+salesTaxTotal;
+
+
+
+
+
+int main()
+{
+	cout << "East County Box Company" << endl
+	<< "Sales Program (Version 1.5)" << endl;
+
+	cout << "Please input the width of your package.";
+	cin >> width;
+
+	cout << "Please input the length of your package.";
+	cin >> length;
+
+	cout << "Please input the height of your package.";
+	cin >> height;
+
+	volume = height * length * width;
+	cout << "Your package has a volume of " << volume << endl;
+	
+	shippingCost = volume * rate;
+	cout << "Your shipping cost is $" << shippingCost << endl;
+
+	salesTaxTotal = shippingCost * salesTax;
+	cout << "The sales tax rate is 0.0755 $" << salesTaxTotal << endl;
+
+	totalCost = salesTaxTotal + shippingCost;
+	cout << "Your total cost is $" << totalCost << endl;
+	
+	return 0;
+}
+
+// Displays The name of the program, asks for package dimensions, displays the volume, displays the shipping cost, displays the sales tax, and displays the total.

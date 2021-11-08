@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int number,
+newNumber;
+
+
+
+
+int main()
+{
+	cout << "Please enter a number between 65 and 122" << endl;
+	cin >> number;
+	
+	cout << static_cast<char>(number) << endl;
+	
+	return 0;
+}
+
+//Displays 
+// Please enter a number between 65 and 122
+//69
+//E

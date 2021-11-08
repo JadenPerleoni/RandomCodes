@@ -1,0 +1,203 @@
+// This is a testing environment.
+// Jaden Perleoni
+// 07/18/2021
+// Mini Project 5
+
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+
+using namespace std;
+int calculateFunction();
+void choiceFunction();
+
+const double SALES_TAX = 0.0775;
+const double SMALL_PACKAGE = 1.5;
+const double MEDIUM_PACKAGE = 2.5;
+const double LARGE_PACKAGE = 3;
+
+
+int main()
+{
+    int subTotal;
+    double change;
+    double salesTaxTotal,
+        totalCost;
+    int paymentChoice;
+    double cashGiven;
+    string licenseNumber;
+    char cardChoice;
+    int lastDigits;
+
+    cout << "East County Box Company" << endl << endl << "Sales Program (version 1.5)" << endl << endl << endl;
+
+    subTotal = calculateFunction();
+
+    salesTaxTotal = subTotal * SALES_TAX;
+
+    totalCost = salesTaxTotal + subTotal;
+
+    cout << fixed << setprecision(2);
+    cout << setw(40) << left << "SubTotal " << "$" << setw(20) << left << subTotal << endl;
+    cout << setw(40) << left << "Sales Tax (0.0775) " << "$" << setw(20) << left << salesTaxTotal << endl << endl;
+    cout << setw(40) << left << "Total" << "$" << setw(20) << left << totalCost << endl;
+
+    cout << "Payment (1. Cash, 2. Check, 3. Credit): ";
+    cin >> paymentChoice;
+
+    if (paymentChoice == 1) {
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Accepted " << "$";
+
+        cin >> cashGiven;
+        if (cashGiven > totalCost) {
+            change = cashGiven - totalCost;
+        }
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Change: " << "$" << setw(20) << left << change << endl;
+
+    }
+    else if (paymentChoice == 2) {
+        cout << setw(40) << left << "Enter Driver License No: ";
+        cin >> licenseNumber;
+
+        if (licenseNumber.length() > 8) {
+            cout << "Driver's license is not valid";
+        }
+        cout << setw(40) << left << "Accepted Check Payment: " << "$" << setw(20) << left << totalCost << endl;
+    }
+    else if (paymentChoice == 3) {
+        cout << fixed << setprecision(2);
+        cout << setw(40) << left << "Visa (V) or Mastercard (M): ";
+        cin >> cardChoice;
+        cout << setw(40) << left << "Enter Last Four Digits of Card: ";
+        cin >> lastDigits;
+        cout << setw(40) << left << "Accepted Credit Card Payment: " << "$" << setw(20) << left << totalCost << endl;
+
+    }
+    return 0;
+
+}
+
+
+int calculateFunction()
+{
+
+    int length, width, height, volume;
+
+    double rate;
+
+    static int subTotal;
+    cout << "Enter package dimensions (feet): " << endl;
+    cout << "Length: ";
+    cin >> length;
+
+    cout << "Width: ";
+    cin >> width;
+
+    cout << "Height: ";
+    cin >> height;
+    volume = length * width * height;
+    cout << "Package Volume: " << volume << " cubic feet" << endl;
+
+    if (volume < 15)
+    {
+        rate = SMALL_PACKAGE;
+    }
+    else if (volume >= 15 && volume <= 45)
+    {
+        rate = MEDIUM_PACKAGE;
+    }
+    else if (volume > 45 && volume <= 65)
+    {
+        rate = LARGE_PACKAGE;
+
+    }
+    else
+    {
+        cout << "Your package is too large. Please re enter the dimensions" <<
+            endl;
+        return 0;
+    }
+    cout << "Shipping Cost ($" << rate << " per cubic foot)" << "$" << rate *
+        volume << endl;
+
+    subTotal += rate * volume;
+
+
+    choiceFunction();
+
+    return subTotal;
+}
+
+
+void
+choiceFunction()
+{
+
+    char choice;
+
+    cout << "Add another package (Y/N): ";
+    cin >> choice;
+
+
+    if (choice != 'Y' && choice != 'N' && choice != 'y' && choice != 'n')
+    {
+        cout << "Please enter yes or no" << endl;
+        choiceFunction();
+    }
+
+    if (choice != 'N' && choice != 'n')
+    {
+
+        calculateFunction();
+
+    }
+}
+
+/*Displays
+East County Box Company
+
+Sales Program (version 1.5)
+
+
+Enter package dimensions (feet):
+Length: 5
+Width: 2
+Height: 2
+Package Volume: 20 cubic feet
+Shipping Cost ($2.5 per cubic foot)$50
+Add another package (Y/N): Y
+Enter package dimensions (feet):
+Length: 4
+Width: 3
+Height: 2
+Package Volume: 24 cubic feet
+Shipping Cost ($2.5 per cubic foot)$60
+Add another package (Y/N): Y
+Enter package dimensions (feet):
+Length: 1
+Width: 2
+Height: 3
+Package Volume: 6 cubic feet
+Shipping Cost ($1.5 per cubic foot)$9
+Add another package (Y/N): N
+SubTotal                                $119
+Sales Tax (0.0775)                      $9.22
+
+Total                                   $128.22
+Payment (1. Cash, 2. Check, 3. Credit): 1
+Accepted                                $130.00
+Change:                                 $1.78     
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Payment (1. Cash, 2. Check, 3. Credit): 2
+Enter Driver License No:                C1234567
+Accepted Check Payment:                 $128.22
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Payment (1. Cash, 2. Check, 3. Credit): 3
+Visa (V) or Mastercard (M):             V
+Enter Last Four Digits of Card:         1234
+Accepted Credit Card Payment:           $128.22
+*/

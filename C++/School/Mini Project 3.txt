@@ -1,0 +1,95 @@
+// This is a testing environment.
+// Jaden Perleoni
+// 07/05/2021
+// Mini Project 2
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+int width,
+length,
+height,
+volume,
+shippingCost;
+
+float
+salesTax = 0.0775,
+rate,
+totalCost,
+salesTaxTotal,
+smallPackage = 1.5,
+mediumPackage = 2.5,
+largePackage = 3;
+
+int volumeFunction(int, int, int);
+
+
+
+int main()
+{
+	cout << "East County Box Company" << endl
+		<< "Sales Program (Version 1.5)" << endl;
+
+		cout << "Enter package dimensions (feet):" << endl;
+		cout << "Length:";
+		cin >> length;
+		cout << "Width:";
+		cin >> width;
+		cout << "Height:";
+		cin >> height;
+
+
+		volume = volumeFunction(length, width, height);
+
+	cout << "Package Volume: " << volume << " cubic feet" << endl;
+
+	if (volume < 15) {
+		rate = smallPackage;
+	}
+	if (volume <= 15 && volume >= 45) {
+		rate = mediumPackage;
+	}
+	if (volume > 45 && volume <= 65) {
+		rate = largePackage;
+	}
+	if (volume > 65) {
+		cout << "Your package is too large. Please re enter the dimensions" << endl;
+		return 0;
+	}
+	
+	shippingCost = volume * rate;
+	salesTaxTotal = shippingCost * salesTax;
+	totalCost = salesTaxTotal + shippingCost;
+
+
+	cout << fixed;
+	cout << setprecision(2);
+	cout << setw(40) << left << "Shipping Cost ($3.00 per cubic foot)" << "$" << setw(20) << left << shippingCost << endl;
+	cout << setw(40) << left << "Sales Tax (0.0775) " << "$" << setw(30) << left << salesTaxTotal << endl;
+	cout << setw(40) << left << "Total"<< "$" << setw(50) << left << totalCost << endl;
+
+	
+
+	return 0;
+}
+int volumeFunction(int lengthValue,int widthValue,int heightValue) {
+	return (lengthValue * widthValue * heightValue);
+}
+/*Displays 
+East County Box Company
+Sales Program (Version 1.5)
+Enter package dimensions (feet):
+Length:9
+Width:9
+Height:9
+Package Volume: 729 cubic feet
+Your package is too large. Please re enter the dimensions
+Please input the width of your package.1
+Please input the length of your package.2
+Please input the height of your package.3
+Shipping Cost ($3.00 per cubic foot)    $9
+Sales Tax (0.0775)                      $0.70
+Total                                   $9.70
+
+
+*/

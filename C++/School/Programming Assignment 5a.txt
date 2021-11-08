@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+   char input;
+   cout << "Enter 1, 2, 3, 4, or 5: ";
+   cin >> input;
+   switch (input)
+   {
+       case '1': cout << "You inputted 1.\n";
+       break;
+        case '2': cout << "You inputted 2.\n";
+       break;
+        case '3': cout << "You inputted 3.\n";
+       break;
+        case '4': cout << "You inputted 4.\n";
+       break;
+        case '5': cout << "You inputted 5.\n";
+       break;
+       default: cout << "Please enter 1, 2, 3, 4, or 5.\n";
+   }
+    return 0;
+    
+}

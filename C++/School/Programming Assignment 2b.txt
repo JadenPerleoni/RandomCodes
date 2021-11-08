@@ -1,0 +1,16 @@
+// This is a testing environment.
+// Jaden Perleoni
+// 07/03/2021
+// Programming Assignment 2b
+#include <iostream>
+using namespace std;
+int number;
+
+int main()
+{
+	number = 5 + 7;
+	cout << "The solution to 5+7 is " << number <<  endl;
+	return 0;
+}
+
+// Displays "The solution to 5+7 is 12"

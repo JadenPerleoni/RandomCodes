@@ -1,0 +1,15 @@
+// This is a testing environment.
+// Jaden Perleoni
+// 07/03/2021
+// Programming Assignment 2a
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	cout << "This is a string \n";
+	return 0;
+}
+
+// Displays "This is a string"

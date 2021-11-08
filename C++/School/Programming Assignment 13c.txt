@@ -1,0 +1,57 @@
+#include <iostream>
+
+using namespace std;
+
+class Student
+{
+    private:
+        long studentID;
+        string lastName;
+        string firstName;
+        long SSN;
+    
+    public:
+        Student(long, string, string, long);
+        long getStudentID() const 
+            { return studentID; }
+        
+        long getSSN() const 
+            { return SSN; }
+            
+        string getlastName() const 
+            { return lastName; }
+        
+        string getfirstName() const 
+            { return firstName; }
+};
+     Student::Student(long sID, string lName, string fName, long S)
+    {
+    studentID = sID;
+    lastName = lName;
+    firstName = fName;
+    SSN = S;
+    }
+
+int main()
+{
+    long studentI, SS;
+    string lastN, firstN;
+    
+   cout << "Please enter your student ID: ";
+   cin >> studentI;
+   cout << "Please enter Social Security Number: ";
+   cin >> SS;
+   cout << "Please enter first name: ";
+   cin >> firstN;
+   cout << "Please enter last name: ";
+   cin >> lastN;
+   
+   
+   Student one(studentI, lastN, firstN, SS);
+    cout << "Your student ID is: " << one.getStudentID() << endl;
+    cout << "Your Social Security Number: " << one.getSSN() << endl;
+    cout << "Your first name is: " << one.getfirstName() << endl;
+    cout << "Your last name is: " << one.getlastName() << endl;
+
+    return 0;
+}

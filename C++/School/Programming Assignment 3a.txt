@@ -1,0 +1,30 @@
+// Jaden Perleoni
+// 07/05/2021
+// Programming Assignment 3a
+
+#include <iostream>
+using namespace std;
+int numberOne,
+numberTwo,
+total;
+
+
+int main()
+{
+	cout << "Please enter the first number" << endl;
+	cin >> numberOne;
+
+	cout << "Please enter the second number" << endl;
+	cin >> numberTwo;
+
+	total = numberOne + numberTwo;
+	cout << "Your total is " << total << endl;
+	return 0;
+}
+
+//Displays
+Please enter the first number
+3
+Please enter the second number
+1
+Your total is 4

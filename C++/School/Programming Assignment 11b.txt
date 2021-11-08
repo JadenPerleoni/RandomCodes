@@ -1,0 +1,30 @@
+struct Inventory {
+   string itemName;
+   double price;
+   int quantity;
+};
+int main()
+{
+    const int NUM_WAREHOUSES = 3;
+    Inventory wareHouse[NUM_WAREHOUSES];
+    int index;
+    
+    for (index = 0; index < NUM_WAREHOUSES; index ++) {
+        cout << "Enter the name of item " << index + 1 << ":";
+        cin >> wareHouse[index].itemName;
+        cout << "Enter the price of item " << index + 1 << ":";
+        cin >> wareHouse[index].price;
+        cout << "Enter the quantity of item " << index + 1 << ":";
+        cin >> wareHouse[index].quantity;
+    }
+     for (index = 0; index < NUM_WAREHOUSES; index ++) {
+        cout << "The name of item " << index + 1 << " is: ";
+        cout << wareHouse[index].itemName << endl;
+        cout << "The price of item " << index + 1 << " is: ";
+        cout << wareHouse[index].price << endl;
+        cout << "The quantity of item  " << index + 1 << " is: ";
+        cout << wareHouse[index].quantity;
+    }
+
+    return 0;
+}

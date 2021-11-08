@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+int newFunction();
+
+
+int main()
+{
+    int val;
+    val = newFunction();
+    cout << "The number that you entered was: " << val;
+
+    return 0;
+}
+int newFunction() {
+    int number;
+    cout << "Please enter a number";
+    cin >> number;
+    return number;
+}

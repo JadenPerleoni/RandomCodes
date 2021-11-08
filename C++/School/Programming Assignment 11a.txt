@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+struct Inventory {
+   string itemName;
+   double price;
+   int quantity;
+};
+int main()
+{
+    Inventory wareHouse;
+    
+    wareHouse.itemName = "Hammer";
+    wareHouse.price = 5.00;
+    wareHouse.quantity = 4;
+    cout<<wareHouse.itemName << endl <<wareHouse.price << endl <<  wareHouse.quantity ;
+
+    return 0;
+}

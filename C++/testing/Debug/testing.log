@@ -1,0 +1,5 @@
+﻿  Testing.cpp
+C:\Users\Jadem\Desktop\CODES\C++\testing\Testing.cpp(61,32): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jadem\Desktop\CODES\C++\testing\Testing.cpp(178,30): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+LINK : warning LNK4076: invalid incremental status file 'C:\Users\Jadem\Desktop\CODES\C++\testing\Debug\testing.ilk' (which will be deleted); linking nonincrementally
+  testing.vcxproj -> C:\Users\Jadem\Desktop\CODES\C++\testing\Debug\testing.exe

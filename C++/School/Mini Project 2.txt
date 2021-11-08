@@ -1,0 +1,105 @@
+// This is a testing environment.
+// Jaden Perleoni
+// 07/05/2021
+// Mini Project 2
+#include <iostream>
+using namespace std;
+int width,
+length,
+height,
+volume,
+shippingCost;
+
+float
+salesTax = 0.0775,
+rate,
+totalCost,
+salesTaxTotal,
+smallPackage = 1.5,
+mediumPackage = 2.5,
+largePackage = 3;
+
+
+
+
+
+int main()
+{
+	cout << "East County Box Company" << endl
+		<< "Sales Program (Version 1.5)" << endl;
+
+		cout << "Please input the width of your package.";
+	cin >> width;
+
+	cout << "Please input the length of your package.";
+	cin >> length;
+
+	cout << "Please input the height of your package.";
+	cin >> height;
+
+	volume = height * length * width;
+	cout << "Your package has a volume of " << volume << endl;
+
+	if (volume < 15) {
+		rate = smallPackage;
+	}
+	if (volume <= 15 && volume >= 45) {
+		rate = mediumPackage;
+	}
+	if (volume > 45 && volume <= 65) {
+		rate = largePackage;
+	}
+	if (volume > 65) {
+		cout << "Your package is too large. Please re enter the dimensions" << endl;
+		length = 0;
+		width = 0;
+		height = 0;
+		cout << "Please input the width of your package.";
+		cin >> width;
+
+		cout << "Please input the length of your package.";
+		cin >> length;
+
+		cout << "Please input the height of your package.";
+		cin >> height;
+		volume = width * length * height;
+		if (volume < 15) {
+			rate = smallPackage;
+		}
+		if (volume <= 15 && volume >= 45) {
+			rate = mediumPackage;
+		}
+		if (volume > 45 && volume <= 65) {
+			rate = largePackage;
+		}
+	}
+	
+	shippingCost = volume * rate;
+	cout << "Your shipping cost is $" << shippingCost << endl;
+
+	salesTaxTotal = shippingCost * salesTax;
+	cout << "The sales tax rate is 0.0755 $" << salesTaxTotal << endl;
+
+	totalCost = salesTaxTotal + shippingCost;
+	cout << "Your total cost is $" << totalCost << endl;
+
+	return 0;
+}
+
+/*Displays 
+East County Box Company
+Sales Program (Version 1.5)
+Please input the width of your package.9
+Please input the length of your package.9
+Please input the height of your package.9
+Your package has a volume of 729
+Your package is too large. Please re enter the dimensions
+Please input the width of your package.5
+Please input the length of your package.4
+Please input the height of your package.3
+Your shipping cost is $180
+The sales tax rate is 0.0755 $13.95
+Your total cost is $193.95
+
+
+*/
